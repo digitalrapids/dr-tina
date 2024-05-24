@@ -1,1 +1,12 @@
-{ "managers": [] }
+{
+  "managers": [
+    {
+      "fullName": "Jasper Rädisch",
+      "portrait": "/assets/profile.png",
+      "customers": {
+        "de": "Keine\n",
+        "en": "None\n"
+      }
+    }
+  ]
+}
