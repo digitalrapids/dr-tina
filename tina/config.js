@@ -1,5 +1,20 @@
 import { defineConfig } from "tinacms";
 
+const localized = (type) => [
+  {
+    type,
+    name: 'de',
+    label: 'Deutsch',
+    required: true,
+  },
+  {
+    type,
+    name: 'en',
+    label: 'English',
+    required: true,
+  },
+]
+
 // Your hosting provider likely exposes this as an environment variable
 const branch =
   process.env.GITHUB_BRANCH ||
@@ -17,35 +32,73 @@ export default defineConfig({
 
   build: {
     outputFolder: "admin",
-    publicFolder: "_site",
+    publicFolder: ".",
   },
   media: {
     tina: {
-      mediaRoot: "",
-      publicFolder: "_site",
+      mediaRoot: "assets",
+      publicFolder: ".",
     },
   },
   // See docs on content modeling for more info on how to setup new content models: https://tina.io/docs/schema/
   schema: {
     collections: [
       {
-        name: "post",
-        label: "Posts",
-        path: "content/posts",
+        name: "managers",
+        label: "Managers",
+        path: "_data",
+        match: {
+          include: "managers",
+        },
+        format: "json",
+        ui: {
+          allowedActions: {
+            create: false,
+            delete: false
+          }
+        },
         fields: [
           {
-            type: "string",
-            name: "title",
-            label: "Title",
-            isTitle: true,
+            type: "object",
+            name: "managers",
+            label: "Managers",
             required: true,
-          },
-          {
-            type: "rich-text",
-            name: "body",
-            label: "Body",
-            isBody: true,
-          },
+            list: true,
+            ui: {
+              itemProps: (item) => {
+                return { label: item?.fullName };
+              },
+            },
+            fields: [
+              {
+                type: "string",
+                name: "fullName",
+                label: "Full Name",
+                isTitle: true,
+                required: true,
+              },
+              {
+                type: "object",
+                name: "title",
+                label: "Title",
+                required: true,
+                fields: localized('string'),
+              },
+              {
+                name: 'portrait',
+                type: 'image',
+                label: 'Portrait',
+                required: true
+               },
+               {
+                 name: 'customers',
+                 type: 'object',
+                 label: 'Customers',
+                 required: true,
+                 fields: localized('rich-text'),
+                },
+            ],    
+          }
         ],
       },
     ],
