@@ -11,4 +11,9 @@ export default function (eleventyConfig) {
   eleventyConfig.addJavaScriptFunction("drExists", (thing) => !!thing);
   eleventyConfig.addPassthroughCopy("admin");
   eleventyConfig.addPassthroughCopy("assets");
+  return {
+    dir: {
+      output: 'docs'
+    }
+  }
 }
