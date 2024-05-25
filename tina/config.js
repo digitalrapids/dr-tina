@@ -33,7 +33,6 @@ export default defineConfig({
   build: {
     outputFolder: "admin",
     publicFolder: ".",
-    basePath: "dr-tina",
   },
   media: {
     tina: {
