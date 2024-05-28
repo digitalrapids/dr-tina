@@ -1,6 +1,14 @@
 {
   "managers": [
     {
+      "fullName": "Felix Menden",
+      "title": {
+        "de": "Technischer Leiter",
+        "en": "CTO"
+      },
+      "portrait": "/assets/IMG_0804_2.PNG"
+    },
+    {
       "fullName": "Jasper Rädisch",
       "portrait": "/assets/profile.png",
       "customers": {
